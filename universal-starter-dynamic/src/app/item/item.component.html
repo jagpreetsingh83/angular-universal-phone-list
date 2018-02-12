@@ -1,0 +1,24 @@
+<img class="card-img-top" src="{{phone.url}}" alt="{{phone.name}}">
+<div class="card-body">
+  <h4 class="card-title">{{phone.name}}</h4>
+  <p class="card-text" *ngIf="loading">Loading...</p>
+  <p class="card-text" *ngIf="!loading">Price {{price | currency}}</p>
+  <button class="btn btn-outline-primary">Details</button>
+  <button class="btn btn-success float-right" (click)="open(content)">Buy</button>
+</div>
+<!-- Model Template -->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">You just bought {{phone.name}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Price {{price | currency}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+<ngx-loading [show]="loading"></ngx-loading>
